@@ -1,4 +1,5 @@
 import pyxel
+import random
 
 pyxel.init(160, 120)
 
@@ -10,7 +11,10 @@ def update():
 
 def draw():
     pyxel.cls(0)
-    pyxel.rect(10, 10, 25, 20, 11)
+    x = random.randint(0, 160)
+    y = random.randint(0, 120)
+    color = random.randint(0, 15)
+    pyxel.rect(x, y, 25, 20, color)
 
 
 pyxel.run(update, draw)
