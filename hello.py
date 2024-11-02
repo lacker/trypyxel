@@ -1,7 +1,10 @@
 import pyxel
 import random
 
-pyxel.init(160, 120)
+SCREEN_SIZE = 200
+CELLS = 5
+CELL_SIZE = SCREEN_SIZE // CELLS
+pyxel.init(SCREEN_SIZE, SCREEN_SIZE)
 
 
 def update():
@@ -11,10 +14,10 @@ def update():
 
 def draw():
     pyxel.cls(0)
-    x = random.randint(0, 160)
-    y = random.randint(0, 120)
-    color = random.randint(0, 15)
-    pyxel.rect(x, y, 25, 20, color)
+    for i in range(5):
+        for j in range(5):
+            color = random.randint(0, 15)
+            pyxel.rect(i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE, CELL_SIZE, color)
 
 
 pyxel.run(update, draw)
