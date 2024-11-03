@@ -5,7 +5,7 @@ SCREEN_SIZE = 200
 CELLS = 5
 CELL_SIZE = SCREEN_SIZE // CELLS
 PLAYER_COLOR = 8  # Define a constant color for the player
-BORDER_COLOR = 5  # Assuming 5 corresponds to a dark grey color
+BORDER_COLOR = 5  # 5 corresponds to a dark grey color
 
 class Player:
     def __init__(self, x, y, color):
