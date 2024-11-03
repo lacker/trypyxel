@@ -5,14 +5,13 @@ SCREEN_SIZE = 200
 CELLS = 5
 CELL_SIZE = SCREEN_SIZE // CELLS
 PLAYER_COLOR = 8  # Define a constant color for the player
-
+BORDER_COLOR = 5  # Assuming 5 corresponds to a dark grey color
 
 class Player:
     def __init__(self, x, y, color):
         self.x = x
         self.y = y
         self.color = color
-
 
 class App:
     def __init__(self):
@@ -36,12 +35,12 @@ class App:
     def draw(self):
         pyxel.cls(0)
         # Draw grid cells
-        for i in range(5):
-            for j in range(5):
-                color = random.randint(0, 15)
+        for i in range(CELLS):
+            for j in range(CELLS):
                 if i == self.player.x and j == self.player.y:
-                    color = self.player.color
-                pyxel.rect(i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE, CELL_SIZE, color)
-
+                    pyxel.rect(i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE, CELL_SIZE, self.player.color)
+                else:
+                    pyxel.rectb(i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE, CELL_SIZE, BORDER_COLOR)  # Draw border
+                    pyxel.rect(i * CELL_SIZE + 1, j * CELL_SIZE + 1, CELL_SIZE - 2, CELL_SIZE - 2, 0)  # Fill cell with black
 
 App()
