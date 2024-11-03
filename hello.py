@@ -39,9 +39,9 @@ class App:
         for i in range(5):
             for j in range(5):
                 color = random.randint(0, 15)
+                if i == self.player.x and j == self.player.y:
+                    color = self.player.color
                 pyxel.rect(i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE, CELL_SIZE, color)
-        # Draw player
-        pyxel.rect(self.player.x * CELL_SIZE, self.player.y * CELL_SIZE, CELL_SIZE, CELL_SIZE, self.player.color)
 
 
 App()
