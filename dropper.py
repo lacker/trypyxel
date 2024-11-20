@@ -5,6 +5,7 @@ SCREEN_SIZE = 300
 THING_SIZE = 10
 MAX_POS = SCREEN_SIZE - THING_SIZE
 H_SPEED = 3
+V_SPEED = 3
 
 
 class Thing:
@@ -39,11 +40,11 @@ class App:
         elif self.active.x > MAX_POS:
             self.active.x = MAX_POS
 
+        self.active.y += V_SPEED
         if self.active.y >= MAX_POS:
+            self.active.y = MAX_POS
             self.things.append(self.active)
             self.active = Thing()
-        else:
-            self.active.y += 1
 
     def draw(self):
         pyxel.cls(0)
