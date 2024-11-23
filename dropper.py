@@ -1,7 +1,7 @@
 import random
 import pyxel
 
-SCREEN_SIZE = 300
+SCREEN_SIZE = 200
 THING_SIZE = 10
 MAX_POS = SCREEN_SIZE - THING_SIZE
 H_SPEED = 3
@@ -13,6 +13,16 @@ class Thing:
         self.x = random.randint(0, MAX_POS)
         self.y = 0
         self.dx = 0
+
+    def step(self):
+        "Do one timestep."
+        self.x += self.dx
+        if self.x < 0:
+            self.x = 0
+        elif self.x > MAX_POS:
+            self.x = MAX_POS
+
+        # TODO: handle y
 
 
 class App:
