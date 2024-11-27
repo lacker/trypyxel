@@ -6,6 +6,7 @@ SCREEN_SIZE = 200
 THING_SIZE = 10
 MAX_POS = SCREEN_SIZE - THING_SIZE
 SPEED = 6
+TURN = 1
 
 
 class Vector:
@@ -19,6 +20,10 @@ class Vector:
 
 def random_vector(size):
     angle = random.random() * 100
+    return polar(angle, size)
+
+
+def polar(angle, size):
     x = math.cos(angle) * size
     y = math.sin(angle) * size
     return Vector(x, y)
@@ -29,14 +34,16 @@ class App:
         pyxel.init(SCREEN_SIZE, SCREEN_SIZE, title="Thing Bouncer")
         x = random.randrange(0, MAX_POS)
         y = random.randrange(0, MAX_POS)
+        self.direction = 0
         self.position = Vector(x, y)
-        self.velocity = random_vector(SPEED)
+        self.velocity = polar(self.direction, SPEED)
         pyxel.run(self.update, self.draw)
 
     def update(self):
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
         if pyxel.btnp(pyxel.KEY_SPACE):
+            self.velocity = polar(self.direction, SPEED)
             self.velocity = random_vector(SPEED)
 
         self.position += self.velocity
