@@ -5,8 +5,8 @@ import pyxel
 SCREEN_SIZE = 200
 THING_SIZE = 10
 MAX_POS = SCREEN_SIZE - THING_SIZE
-SPEED = 6
-TURN = 1
+SPEED = 2
+TURN = 2 * math.pi / 16
 
 
 class Vector:
@@ -43,8 +43,8 @@ class App:
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
         if pyxel.btnp(pyxel.KEY_SPACE):
+            self.direction += TURN
             self.velocity = polar(self.direction, SPEED)
-            self.velocity = random_vector(SPEED)
 
         self.position += self.velocity
 
