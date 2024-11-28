@@ -7,6 +7,7 @@ THING_SIZE = 10
 MAX_POS = SCREEN_SIZE - THING_SIZE
 SPEED = 2
 TURN = 2 * math.pi / 16
+INITIAL_COLOR = 8
 
 
 class Vector:
@@ -37,6 +38,7 @@ class App:
         self.direction = 0
         self.position = Vector(x, y)
         self.velocity = polar(self.direction, SPEED)
+        self.color = INITIAL_COLOR
         pyxel.run(self.update, self.draw)
 
     def update(self):
@@ -66,7 +68,7 @@ class App:
 
     def draw(self):
         pyxel.cls(0)
-        pyxel.rect(self.position.x, self.position.y, THING_SIZE, THING_SIZE, 8)
+        pyxel.rect(self.position.x, self.position.y, THING_SIZE, THING_SIZE, self.color)
 
 
 App()
