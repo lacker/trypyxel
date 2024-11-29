@@ -8,6 +8,7 @@ MAX_POS = SCREEN_SIZE - THING_SIZE
 SPEED = 2
 TURN = 2 * math.pi / 16
 INITIAL_COLOR = 8
+LAST_COLOR = 15
 
 
 class Vector:
@@ -41,6 +42,11 @@ class App:
         self.color = INITIAL_COLOR
         pyxel.run(self.update, self.draw)
 
+    def change_color(self):
+        self.color += 1
+        if self.color > LAST_COLOR:
+            self.color = INITIAL_COLOR
+
     def update(self):
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
@@ -55,16 +61,20 @@ class App:
         if self.position.x <= 0 and self.velocity.x < 0:
             self.position.x = 0
             self.velocity.x = -self.velocity.x
+            self.change_color()
         if self.position.x >= MAX_POS and self.velocity.x > 0:
             self.position.x = MAX_POS
             self.velocity.x = -self.velocity.x
+            self.change_color()
 
         if self.position.y <= 0 and self.velocity.y < 0:
             self.position.y = 0
             self.velocity.y = -self.velocity.y
+            self.change_color()
         if self.position.y >= MAX_POS and self.velocity.y > 0:
             self.position.y = MAX_POS
             self.velocity.y = -self.velocity.y
+            self.change_color()
 
     def draw(self):
         pyxel.cls(0)
