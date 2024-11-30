@@ -40,17 +40,20 @@ class App:
         self.position = Vector(x, y)
         self.velocity = polar(self.direction, SPEED)
         self.color = INITIAL_COLOR
+        self.score = 0
         pyxel.run(self.update, self.draw)
 
     def change_color(self):
         self.color += 1
         if self.color > LAST_COLOR:
             self.color = INITIAL_COLOR
+        self.score = 0
 
     def update(self):
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
         if pyxel.btnp(pyxel.KEY_SPACE):
+            self.score += 1
             self.direction += TURN
             self.velocity = polar(self.direction, SPEED)
 
@@ -79,6 +82,7 @@ class App:
     def draw(self):
         pyxel.cls(0)
         pyxel.rect(self.position.x, self.position.y, THING_SIZE, THING_SIZE, self.color)
+        pyxel.text(5, 5, str(self.score), 7)
 
 
 App()
