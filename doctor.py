@@ -18,6 +18,11 @@ class App:
         pyxel.run(self.update, self.draw)
 
     def update(self):
+        # Q quits
+        if pyxel.btnp(pyxel.KEY_Q):
+            pyxel.quit()
+
+        # Drop the active block
         self.ticks += 1
         if self.ticks % DROP_TICKS == 0:
             self.active_y += 1
