@@ -22,6 +22,16 @@ class App:
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
 
+        # Left and right move the active block
+        if pyxel.btnp(pyxel.KEY_LEFT):
+            self.active_x -= 1
+            if self.active_x < 0:
+                self.active_x = 0
+        if pyxel.btnp(pyxel.KEY_RIGHT):
+            self.active_x += 1
+            if self.active_x >= BOARD_WIDTH:
+                self.active_x = BOARD_WIDTH - 1
+
         # Drop the active block
         self.ticks += 1
         if self.ticks % DROP_TICKS == 0:
